@@ -322,6 +322,399 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/cloud2/" itemprop="url">搭建Eureka注册中心</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T21:46:14+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  274
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="配置prom文件"><a href="#配置prom文件" class="headerlink" title="配置prom文件"></a>配置prom文件</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--&lt;dependency&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;--&gt;</span><br><span class="line">&lt;!--&lt;/dependency&gt;--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="yml-文件配置"><a href="#yml-文件配置" class="headerlink" title="yml 文件配置"></a>yml 文件配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 服务端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8100</span></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">  ### 注册中心Ip地址</span><br><span class="line">    hostname: <span class="number">127.0</span>.0.1</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">  ### hostname</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka/</span></span><br><span class="line">  ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候是需要为true）</span><br><span class="line">    register-with-eureka: <span class="keyword">false</span></span><br><span class="line">  ### 因为自己是注册中心，不需要检索服务信息</span><br><span class="line">    fetch-registry: <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>#启动项目<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lylcloud.springcloudeurekaservcer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudEurekaServcerApplication</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@EnableEurekaServer</span> 表示开启EurekaServer服务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaServcerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动之后-访问-http-localhost-8100"><a href="#启动之后-访问-http-localhost-8100" class="headerlink" title="启动之后 访问 http://localhost:8100"></a>启动之后 访问 <a href="http://localhost:8100" target="_blank" rel="noopener">http://localhost:8100</a></h2><p><img src="images/cloud/cloud2-1.png" alt="cloud2-1.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/cloud1/" itemprop="url">一丶Spring Cloud 基本概念理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T19:51:55+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  570
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><p> SpringCloud 是一套比较完整地微服务解决方案框架，不像其他Rpc远程调用框架，只能解决某个微服务中的问题，<br> 可以把SPringCloud 理解为一条龙微服务解决方案。在解决微服务的问题上比较完善。</p>
+<blockquote>
+<ul>
+<li>分布式配置中心<blockquote>
+<ul>
+<li>百度的diconf</li>
+<li>Netfix的Archaius</li>
+<li>360 的QConf</li>
+<li>springCloud</li>
+<li>携程的阿波罗</li>
+</ul>
+</blockquote>
+</li>
+<li>分布式锁</li>
+<li>分布式跟踪<blockquote>
+<ul>
+<li>京东的hyra </li>
+<li>springcloud的sleuth</li>
+</ul>
+</blockquote>
+</li>
+<li>分布式服务治理<blockquote>
+<ul>
+<li>阿里巴巴-Dubbo</li>
+<li>当当网-Consul</li>
+</ul>
+</blockquote>
+</li>
+<li>分布式任务调度平台<blockquote>
+<ul>
+<li>xxl-job </li>
+<li>elastic-job </li>
+<li>springcloud 的task</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h1 id="SpringCloud-子功能"><a href="#SpringCloud-子功能" class="headerlink" title="SpringCloud 子功能"></a>SpringCloud 子功能</h1><blockquote>
+<ul>
+<li>config  分布式配置中心</li>
+<li>netfix 核心组件</li>
+<li>Eureka: 服务治理 注册中心</li>
+<li>Hystrix： 服务保护框架</li>
+<li>Ribbon:客户端负载均衡器</li>
+<li>Fegin:基于Ribbon和Hystrix的声明式服务调用组件</li>
+<li>Zuul: 网关组件,提供智能路由，访问过滤等功能</li>
+</ul>
+</blockquote>
+<h1 id="Spring-Eureka"><a href="#Spring-Eureka" class="headerlink" title="Spring Eureka"></a>Spring Eureka</h1><h3 id="1-服务注册与发现原理"><a href="#1-服务注册与发现原理" class="headerlink" title="1. 服务注册与发现原理"></a>1. 服务注册与发现原理</h3><pre><code>在任何Rpc远程服务框架中,都会有有个注册中心：存放服务地址相关信息（接口地址）。
+ 支持：Eureka，Consul（go语言编写），Zookeeper
+Dobbo支持两种Redis活Zookeeper
+服务提供者: 提供接口服务
+服务消费者：调用别人接口进行使用
+一个服务可以作为提供者也可以作为消费者
+eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务地址和端口以别名的方式注册到注册中心上去。
+     消费者 :在调用接口的时候,使用服务的别名也就是提供者的别名去注册中心上获取实际Rpc远程调用地址。
+     如果消费者获取实际Rpc远程调用之后再使用本地HttpClient实际调用。首先会缓存在jvm内容中，默认情况下&apos;eureka&apos;每隔30秒更新一次服务调用地址
+     微服务负载均衡：本地负载均衡。
+</code></pre><blockquote>
+<ul>
+<li>服务注册：将服务信息注册到注册中心上</li>
+<li>服务发现 ：从注册中心上获取服务信息。</li>
+</ul>
+</blockquote>
+<h3 id="2-Eureka作为注册中心"><a href="#2-Eureka作为注册中心" class="headerlink" title="2.  Eureka作为注册中心"></a>2.  Eureka作为注册中心</h3><h3 id="3-搭建集群高可用Eureka注册中心"><a href="#3-搭建集群高可用Eureka注册中心" class="headerlink" title="3. 搭建集群高可用Eureka注册中心"></a>3. 搭建集群高可用Eureka注册中心</h3><h3 id="4-SpringCloud-Eureka2-0-闭源说明"><a href="#4-SpringCloud-Eureka2-0-闭源说明" class="headerlink" title="4. SpringCloud Eureka2.0 闭源说明"></a>4. SpringCloud Eureka2.0 闭源说明</h3><h3 id="5-Consul，Eureka，Zookeeper，Redis对比"><a href="#5-Consul，Eureka，Zookeeper，Redis对比" class="headerlink" title="5. Consul，Eureka，Zookeeper，Redis对比"></a>5. Consul，Eureka，Zookeeper，Redis对比</h3><h3 id="6-Consul注册中心环境搭建"><a href="#6-Consul注册中心环境搭建" class="headerlink" title="6. Consul注册中心环境搭建"></a>6. Consul注册中心环境搭建</h3><h3 id="7-SpringCloud使用Consul替代Eureka作为注册中心"><a href="#7-SpringCloud使用Consul替代Eureka作为注册中心" class="headerlink" title="7. SpringCloud使用Consul替代Eureka作为注册中心"></a>7. SpringCloud使用Consul替代Eureka作为注册中心</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/Integration/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -341,7 +734,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/28/Integration/" itemprop="url">Integration</a></h1>
+                <a class="post-title-link" href="/2018/12/28/Integration/" itemprop="url">消息系统</a></h1>
         
 
         <div class="post-meta">
@@ -385,7 +778,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  8
+                  25
                 </span>
               
 
@@ -424,7 +817,12 @@
       
         
           
-            <h1 id="Spring-Integeration-事件驱动架构"><a href="#Spring-Integeration-事件驱动架构" class="headerlink" title="Spring Integeration 事件驱动架构"></a>Spring Integeration 事件驱动架构</h1>
+            <h1 id="Spring-Integeration-事件驱动架构"><a href="#Spring-Integeration-事件驱动架构" class="headerlink" title="Spring Integeration 事件驱动架构"></a>Spring Integeration 事件驱动架构</h1><blockquote>
+<ul>
+<li>事件通知：通过发送事件消息来通知其他</li>
+</ul>
+</blockquote>
+
           
         
       
@@ -679,7 +1077,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -690,7 +1088,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -701,7 +1099,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -820,7 +1218,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8</span>
+    <span title="Site words total count">869</span>
   
 </div>
 
@@ -847,7 +1245,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8字</span>
+  <span class="post-count">博客全站共869字</span>
 </div>
 
         
