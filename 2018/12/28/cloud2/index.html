@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,7 +127,7 @@
 
 
 
-  <meta name="keywords" content="好好学习 天天向上">
+  <meta name="keywords" content="SpringCloud,">
 
 
 
@@ -140,19 +140,20 @@
 
 
 
-<meta name="description" content="配置prom文件1234567891011121314&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt;&amp;lt;!--&amp;lt;de">
+<meta name="description" content="Eureka 注册中心">
+<meta name="keywords" content="SpringCloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建Eureka注册中心">
+<meta property="og:title" content="2.Eureka 创建注册中心">
 <meta property="og:url" content="https://liyunlog0621.github.io/2018/12/28/cloud2/index.html">
 <meta property="og:site_name" content="Advanced">
-<meta property="og:description" content="配置prom文件1234567891011121314&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt;&amp;lt;!--&amp;lt;de">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https://liyunlog0621.github.io/2018/12/28/cloud2/images/cloud/cloud2-1.png">
-<meta property="og:updated_time" content="2018-12-29T02:39:43.168Z">
+<meta property="og:description" content="Eureka 注册中心">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/cloud2-1.png">
+<meta property="og:updated_time" content="2018-12-29T08:24:20.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建Eureka注册中心">
-<meta name="twitter:description" content="配置prom文件1234567891011121314&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt;&amp;lt;!--&amp;lt;de">
-<meta name="twitter:image" content="https://liyunlog0621.github.io/2018/12/28/cloud2/images/cloud/cloud2-1.png">
+<meta name="twitter:title" content="2.Eureka 创建注册中心">
+<meta name="twitter:description" content="Eureka 注册中心">
+<meta name="twitter:image" content="https://liyunlog0621.github.io/images/cloud/cloud2-1.png">
 
 
 
@@ -168,7 +169,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: 'A2MGO2KPFJ',
@@ -188,7 +189,7 @@
 
 
 
-  <title>搭建Eureka注册中心 | Advanced</title>
+  <title>2.Eureka 创建注册中心 | Advanced</title>
   
 
 
@@ -199,7 +200,7 @@
 
 
 </head>
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -247,17 +248,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            About
+            首页
           </a>
         </li>
       
@@ -267,7 +258,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -277,7 +268,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -287,7 +278,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -341,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建Eureka注册中心</h1>
+          <h1 class="post-title" itemprop="name headline">2.Eureka 创建注册中心</h1>
         
 
         <div class="post-meta">
@@ -351,9 +342,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T21:46:14+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T19:51:55+08:00">
                 2018-12-28
               </time>
             
@@ -363,6 +354,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -382,10 +395,10 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
-                <span title="Words count in article">
-                  274
+                <span title="字数统计">
+                  283
                 </span>
               
 
@@ -398,9 +411,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="Reading time">
+                <span title="阅读时长">
                   1
                 </span>
               
@@ -422,10 +435,13 @@
       
 
       
-        <h2 id="配置prom文件"><a href="#配置prom文件" class="headerlink" title="配置prom文件"></a>配置prom文件</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--&lt;dependency&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;--&gt;</span><br><span class="line">&lt;!--&lt;/dependency&gt;--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="yml-文件配置"><a href="#yml-文件配置" class="headerlink" title="yml 文件配置"></a>yml 文件配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 服务端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8100</span></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">  ### 注册中心Ip地址</span><br><span class="line">    hostname: <span class="number">127.0</span>.0.1</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">  ### hostname</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka/</span></span><br><span class="line">  ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候是需要为true）</span><br><span class="line">    register-with-eureka: <span class="keyword">false</span></span><br><span class="line">  ### 因为自己是注册中心，不需要检索服务信息</span><br><span class="line">    fetch-registry: <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
-<p>#启动项目<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lylcloud.springcloudeurekaservcer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudEurekaServcerApplication</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@EnableEurekaServer</span> 表示开启EurekaServer服务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaServcerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动之后-访问-http-localhost-8100"><a href="#启动之后-访问-http-localhost-8100" class="headerlink" title="启动之后 访问 http://localhost:8100"></a>启动之后 访问 <a href="http://localhost:8100" target="_blank" rel="noopener">http://localhost:8100</a></h2><p><img src="images/cloud/cloud2-1.png" alt="cloud2-1.png"></p>
+        <p>Eureka 注册中心</p>
+<a id="more"></a>
+<h1 id="1-配置prom文件"><a href="#1-配置prom文件" class="headerlink" title="1. 配置prom文件"></a>1. 配置prom文件</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--&lt;dependency&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;--&gt;</span><br><span class="line">&lt;!--&lt;/dependency&gt;--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="3-yml-文件配置"><a href="#3-yml-文件配置" class="headerlink" title="3. yml 文件配置"></a>3. yml 文件配置</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 服务端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8100</span></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">  ### 注册中心Ip地址</span><br><span class="line">    hostname: <span class="number">127.0</span>.0.1</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">  ### hostname</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka/</span></span><br><span class="line">  ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候是需要为true）</span><br><span class="line">    register-with-eureka: <span class="keyword">false</span></span><br><span class="line">  ### 因为自己是注册中心，不需要检索服务信息</span><br><span class="line">    fetch-registry: <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-启动项目"><a href="#4-启动项目" class="headerlink" title="4.启动项目"></a>4.启动项目</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lylcloud.springcloudeurekaservcer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudEurekaServcerApplication</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@EnableEurekaServer</span> 表示开启EurekaServer服务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaServcerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-启动之后"><a href="#5-启动之后" class="headerlink" title="5. 启动之后"></a>5. 启动之后</h1><p>访问 <a href="http://localhost:8100" target="_blank" rel="noopener">http://localhost:8100</a></p>
+<p><img src="/images/cloud/cloud2-1.png" alt="cloud2-1.png"></p>
 
       
     </div>
@@ -448,6 +464,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/SpringCloud/" rel="tag"><i class="fa fa-tag"></i>SpringCloud</a>
+          
+        </div>
+      
 
       
       
@@ -457,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/28/cloud1/" rel="next" title="一丶Spring Cloud 基本概念理解">
-                <i class="fa fa-chevron-left"></i> 一丶Spring Cloud 基本概念理解
+              <a href="/2018/12/28/Integration/" rel="next" title="消息系统">
+                <i class="fa fa-chevron-left"></i> 消息系统
               </a>
             
           </div>
@@ -466,6 +488,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/28/cloud1/" rel="prev" title="1.Spring Cloud 基本概念理解">
+                1.Spring Cloud 基本概念理解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -519,10 +545,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -542,8 +568,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -552,10 +578,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">categories</span>
-                
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
               </div>
             
 
@@ -563,10 +589,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">tags</span>
-                
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
               </div>
             
 
@@ -664,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置prom文件"><span class="nav-number">1.</span> <span class="nav-text">配置prom文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yml-文件配置"><span class="nav-number">2.</span> <span class="nav-text">yml 文件配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动之后-访问-http-localhost-8100"><span class="nav-number">3.</span> <span class="nav-text">启动之后 访问 http://localhost:8100</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-配置prom文件"><span class="nav-number">1.</span> <span class="nav-text">1. 配置prom文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-yml-文件配置"><span class="nav-number">2.</span> <span class="nav-text">3. yml 文件配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-启动项目"><span class="nav-number">3.</span> <span class="nav-text">4.启动项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-启动之后"><span class="nav-number">4.</span> <span class="nav-text">5. 启动之后</span></a></li></ol></div>
             
 
           </div>
@@ -685,7 +711,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -699,7 +725,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">869</span>
+    <span title="Site words total count">8.3k</span>
   
 </div>
 
@@ -712,7 +738,7 @@
     本站总访问量<span id="busuanzi_value_site_pv"></span>次
 </span>
 </div>
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -720,13 +746,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共869字</span>
+  <span class="post-count">博客全站共8.3k字</span>
 </div>
 
         

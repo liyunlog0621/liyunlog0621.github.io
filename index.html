@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -146,7 +146,7 @@
 <meta property="og:url" content="https://liyunlog0621.github.io/index.html">
 <meta property="og:site_name" content="Advanced">
 <meta property="og:description" content="李云龙的个人小站，主要是个人学习资料的记录">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Advanced">
 <meta name="twitter:description" content="李云龙的个人小站，主要是个人学习资料的记录">
@@ -165,7 +165,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: 'A2MGO2KPFJ',
@@ -196,7 +196,7 @@
 
 
 </head>
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -245,17 +245,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
-            
-            About
+            首页
           </a>
         </li>
       
@@ -265,7 +255,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -275,7 +265,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -285,7 +275,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -322,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud2/">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李云龙">
@@ -341,7 +331,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/28/cloud2/" itemprop="url">搭建Eureka注册中心</a></h1>
+                <a class="post-title-link" href="/2018/12/28/cloud1/" itemprop="url">1.Spring Cloud 基本概念理解</a></h1>
         
 
         <div class="post-meta">
@@ -351,9 +341,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T21:46:14+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T19:51:55+08:00">
                 2018-12-28
               </time>
             
@@ -363,6 +353,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -382,10 +394,10 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
-                <span title="Words count in article">
-                  274
+                <span title="字数统计">
+                  570
                 </span>
               
 
@@ -398,10 +410,10 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="Reading time">
-                  1
+                <span title="阅读时长">
+                  2
                 </span>
               
             </div>
@@ -423,13 +435,14 @@
 
       
         
-          
-            <h2 id="配置prom文件"><a href="#配置prom文件" class="headerlink" title="配置prom文件"></a>配置prom文件</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--&lt;dependency&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;--&gt;</span><br><span class="line">    &lt;!--&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;--&gt;</span><br><span class="line">&lt;!--&lt;/dependency&gt;--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="yml-文件配置"><a href="#yml-文件配置" class="headerlink" title="yml 文件配置"></a>yml 文件配置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">### 服务端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8100</span></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">  ### 注册中心Ip地址</span><br><span class="line">    hostname: <span class="number">127.0</span>.0.1</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">  ### hostname</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka/</span></span><br><span class="line">  ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候是需要为true）</span><br><span class="line">    register-with-eureka: <span class="keyword">false</span></span><br><span class="line">  ### 因为自己是注册中心，不需要检索服务信息</span><br><span class="line">    fetch-registry: <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
-<p>#启动项目<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lylcloud.springcloudeurekaservcer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudEurekaServcerApplication</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@EnableEurekaServer</span> 表示开启EurekaServer服务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaServcerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="启动之后-访问-http-localhost-8100"><a href="#启动之后-访问-http-localhost-8100" class="headerlink" title="启动之后 访问 http://localhost:8100"></a>启动之后 访问 <a href="http://localhost:8100" target="_blank" rel="noopener">http://localhost:8100</a></h2><p><img src="images/cloud/cloud2-1.png" alt="cloud2-1.png"></p>
-
-          
+          <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><p> SpringCloud 是一套比较完整地微服务解决方案框架，不像其他Rpc远程调用框架，只能解决某个微服务中的问题，<br> 可以把SPringCloud 理解为一条龙微服务解决方案。在解决微服务的问题上比较完善。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/28/cloud1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -477,7 +490,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud1/">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/cloud2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李云龙">
@@ -496,7 +509,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/28/cloud1/" itemprop="url">一丶Spring Cloud 基本概念理解</a></h1>
+                <a class="post-title-link" href="/2018/12/28/cloud2/" itemprop="url">2.Eureka 创建注册中心</a></h1>
         
 
         <div class="post-meta">
@@ -506,9 +519,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T19:51:55+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T19:51:55+08:00">
                 2018-12-28
               </time>
             
@@ -527,7 +540,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
@@ -559,10 +572,10 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
-                <span title="Words count in article">
-                  570
+                <span title="字数统计">
+                  283
                 </span>
               
 
@@ -575,9 +588,524 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="Reading time">
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Eureka 注册中心</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/28/cloud2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/cloud3/" itemprop="url">3.搭建Eureka服务提供者</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:06:59+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  356
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="案例说明"><a href="#案例说明" class="headerlink" title="案例说明"></a>案例说明</h1><p>案例：实现会员服务(提供者) member 调用订单服务（消费者） order</p>
+<p>Eureka服务提供者</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/29/cloud3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud5/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/cloud5/" itemprop="url">5.@LoadBalanced实现本地负载均衡</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:24:01+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  388
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>@LoadBalanced 能够让RestTemplate在请求的时候拥有客户端负载均衡的能力<br>ribbon 本地负载均衡</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/29/cloud5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/cloud4/" itemprop="url">4.搭建Eureka服务消费者</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:07:19+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  503
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
                   2
                 </span>
               
@@ -600,74 +1128,530 @@
 
       
         
+          <h1 id="消费者（使用RestTemplate调用）"><a href="#消费者（使用RestTemplate调用）" class="headerlink" title="消费者（使用RestTemplate调用）"></a>消费者（使用RestTemplate调用）</h1><p>Eureka服务消费者<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/29/cloud4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2019/01/02/cloud7/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/cloud7/" itemprop="url">7.Ribbon</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T10:10:36+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-            <h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><p> SpringCloud 是一套比较完整地微服务解决方案框架，不像其他Rpc远程调用框架，只能解决某个微服务中的问题，<br> 可以把SPringCloud 理解为一条龙微服务解决方案。在解决微服务的问题上比较完善。</p>
-<blockquote>
-<ul>
-<li>分布式配置中心<blockquote>
-<ul>
-<li>百度的diconf</li>
-<li>Netfix的Archaius</li>
-<li>360 的QConf</li>
-<li>springCloud</li>
-<li>携程的阿波罗</li>
-</ul>
-</blockquote>
-</li>
-<li>分布式锁</li>
-<li>分布式跟踪<blockquote>
-<ul>
-<li>京东的hyra </li>
-<li>springcloud的sleuth</li>
-</ul>
-</blockquote>
-</li>
-<li>分布式服务治理<blockquote>
-<ul>
-<li>阿里巴巴-Dubbo</li>
-<li>当当网-Consul</li>
-</ul>
-</blockquote>
-</li>
-<li>分布式任务调度平台<blockquote>
-<ul>
-<li>xxl-job </li>
-<li>elastic-job </li>
-<li>springcloud 的task</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<h1 id="SpringCloud-子功能"><a href="#SpringCloud-子功能" class="headerlink" title="SpringCloud 子功能"></a>SpringCloud 子功能</h1><blockquote>
-<ul>
-<li>config  分布式配置中心</li>
-<li>netfix 核心组件</li>
-<li>Eureka: 服务治理 注册中心</li>
-<li>Hystrix： 服务保护框架</li>
-<li>Ribbon:客户端负载均衡器</li>
-<li>Fegin:基于Ribbon和Hystrix的声明式服务调用组件</li>
-<li>Zuul: 网关组件,提供智能路由，访问过滤等功能</li>
-</ul>
-</blockquote>
-<h1 id="Spring-Eureka"><a href="#Spring-Eureka" class="headerlink" title="Spring Eureka"></a>Spring Eureka</h1><h3 id="1-服务注册与发现原理"><a href="#1-服务注册与发现原理" class="headerlink" title="1. 服务注册与发现原理"></a>1. 服务注册与发现原理</h3><pre><code>在任何Rpc远程服务框架中,都会有有个注册中心：存放服务地址相关信息（接口地址）。
- 支持：Eureka，Consul（go语言编写），Zookeeper
-Dobbo支持两种Redis活Zookeeper
-服务提供者: 提供接口服务
-服务消费者：调用别人接口进行使用
-一个服务可以作为提供者也可以作为消费者
-eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务地址和端口以别名的方式注册到注册中心上去。
-     消费者 :在调用接口的时候,使用服务的别名也就是提供者的别名去注册中心上获取实际Rpc远程调用地址。
-     如果消费者获取实际Rpc远程调用之后再使用本地HttpClient实际调用。首先会缓存在jvm内容中，默认情况下&apos;eureka&apos;每隔30秒更新一次服务调用地址
-     微服务负载均衡：本地负载均衡。
-</code></pre><blockquote>
-<ul>
-<li>服务注册：将服务信息注册到注册中心上</li>
-<li>服务发现 ：从注册中心上获取服务信息。</li>
-</ul>
-</blockquote>
-<h3 id="2-Eureka作为注册中心"><a href="#2-Eureka作为注册中心" class="headerlink" title="2.  Eureka作为注册中心"></a>2.  Eureka作为注册中心</h3><h3 id="3-搭建集群高可用Eureka注册中心"><a href="#3-搭建集群高可用Eureka注册中心" class="headerlink" title="3. 搭建集群高可用Eureka注册中心"></a>3. 搭建集群高可用Eureka注册中心</h3><h3 id="4-SpringCloud-Eureka2-0-闭源说明"><a href="#4-SpringCloud-Eureka2-0-闭源说明" class="headerlink" title="4. SpringCloud Eureka2.0 闭源说明"></a>4. SpringCloud Eureka2.0 闭源说明</h3><h3 id="5-Consul，Eureka，Zookeeper，Redis对比"><a href="#5-Consul，Eureka，Zookeeper，Redis对比" class="headerlink" title="5. Consul，Eureka，Zookeeper，Redis对比"></a>5. Consul，Eureka，Zookeeper，Redis对比</h3><h3 id="6-Consul注册中心环境搭建"><a href="#6-Consul注册中心环境搭建" class="headerlink" title="6. Consul注册中心环境搭建"></a>6. Consul注册中心环境搭建</h3><h3 id="7-SpringCloud使用Consul替代Eureka作为注册中心"><a href="#7-SpringCloud使用Consul替代Eureka作为注册中心" class="headerlink" title="7. SpringCloud使用Consul替代Eureka作为注册中心"></a>7. SpringCloud使用Consul替代Eureka作为注册中心</h3>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/springCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">-springCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  815
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Ribbon的概念"><a href="#Ribbon的概念" class="headerlink" title="Ribbon的概念"></a>Ribbon的概念</h1><p>  Ribbon是Netflix发布的云中间层服务开源项目，其主要功能是提供客户端的负载均衡算法。Ribbon客户端组件提供一系列完善的配置项，如连接超时，重试等，简单的说。Ribbon是一个客户端的负载均衡器。我们可以在配置文件中列出Load Balancer后面的机器，Ribbon会自动的帮助你基于某种规则（简单轮询，随机连接等）去连接这些机器，可以使用Ribbon是实现自定义的负载均衡算法，</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/cloud7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud6/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/29/cloud6/" itemprop="url">6.Eureka2.0集群搭建以及服务调用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:24:47+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  901
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>微服务核心：核心在于服务治理-注册中心<br>搭建erueka集群环境，至少需要2台以上。eureka搭建集群原理是使用相互注册原理，形成一组相互祖册的注册中心。<br>从而实现数据相互的同步。从而可以达到高可用</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/29/cloud6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2019/01/02/cloud8/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/cloud8/" itemprop="url">8.Feign</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T15:46:07+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">-springcloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Feign的含义"><a href="#Feign的含义" class="headerlink" title="Feign的含义"></a>Feign的含义</h1><blockquote>
+<p>Feign是一个声明式的WebService客户端，使用Feign主需要创建一个接口加上对应注解。<br>Fegin是一种声明式，模板化的Http客户端，在使用Feign可以使用http请求访问远程服务，类似于调用本地方法一样。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/cloud8/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -744,9 +1728,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T16:52:46+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T16:52:46+08:00">
                 2018-12-28
               </time>
             
@@ -775,9 +1759,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
-                <span title="Words count in article">
+                <span title="字数统计">
                   25
                 </span>
               
@@ -791,9 +1775,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="Reading time">
+                <span title="阅读时长">
                   1
                 </span>
               
@@ -900,9 +1884,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T16:27:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T16:27:40+08:00">
                 2018-12-28
               </time>
             
@@ -921,7 +1905,7 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
@@ -953,9 +1937,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                  <span class="post-meta-item-text">字数统计&#58;</span>
                 
-                <span title="Words count in article">
+                <span title="字数统计">
                   0
                 </span>
               
@@ -969,9 +1953,9 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="Reading time">
+                <span title="阅读时长">
                   1
                 </span>
               
@@ -1077,8 +2061,8 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -1087,10 +2071,10 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">categories</span>
-                
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
               </div>
             
 
@@ -1098,10 +2082,10 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">tags</span>
-                
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
               </div>
             
 
@@ -1204,7 +2188,7 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1218,7 +2202,7 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">869</span>
+    <span title="Site words total count">8.3k</span>
   
 </div>
 
@@ -1231,7 +2215,7 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
     本站总访问量<span id="busuanzi_value_site_pv"></span>次
 </span>
 </div>
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -1239,13 +2223,13 @@ eg： 提供者 ：服务启动的的时候会把当前基本服务比如服务�
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共869字</span>
+  <span class="post-count">博客全站共8.3k字</span>
 </div>
 
         

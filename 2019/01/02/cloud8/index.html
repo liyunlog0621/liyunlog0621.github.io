@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-springcloud,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Advanced" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Feign的含义 Feign是一个声明式的WebService客户端，使用Feign主需要创建一个接口加上对应注解。Fegin是一种声明式，模板化的Http客户端，在使用Feign可以使用http请求访问远程服务，类似于调用本地方法一样。">
+<meta name="keywords" content="-springcloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.Feign">
+<meta property="og:url" content="https://liyunlog0621.github.io/2019/01/02/cloud8/index.html">
+<meta property="og:site_name" content="Advanced">
+<meta property="og:description" content="Feign的含义 Feign是一个声明式的WebService客户端，使用Feign主需要创建一个接口加上对应注解。Fegin是一种声明式，模板化的Http客户端，在使用Feign可以使用http请求访问远程服务，类似于调用本地方法一样。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-4.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-3.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-5.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-6.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-7.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/7-8.png">
+<meta property="og:updated_time" content="2019-01-03T06:07:51.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8.Feign">
+<meta name="twitter:description" content="Feign的含义 Feign是一个声明式的WebService客户端，使用Feign主需要创建一个接口加上对应注解。Fegin是一种声明式，模板化的Http客户端，在使用Feign可以使用http请求访问远程服务，类似于调用本地方法一样。">
+<meta name="twitter:image" content="https://liyunlog0621.github.io/images/cloud/7-4.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'A2MGO2KPFJ',
+      apiKey: '826e307b43d2a3f1db29b6f8c0d9782f',
+      indexName: 'your Index name',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://liyunlog0621.github.io/2019/01/02/cloud8/">
+
+
+
+
+
+  <title>8.Feign | Advanced</title>
+  
+
+
+
+
+
+
+
+
+</head>
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/liyunlog0621"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Advanced</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2019/01/02/cloud8/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李云龙">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Advanced">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">8.Feign</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T15:46:07+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">-springcloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Feign的含义"><a href="#Feign的含义" class="headerlink" title="Feign的含义"></a>Feign的含义</h1><blockquote>
+<p>Feign是一个声明式的WebService客户端，使用Feign主需要创建一个接口加上对应注解。<br>Fegin是一种声明式，模板化的Http客户端，在使用Feign可以使用http请求访问远程服务，类似于调用本地方法一样。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Feign的特性"><a href="#Feign的特性" class="headerlink" title="Feign的特性"></a>Feign的特性</h1><blockquote>
+<ul>
+<li>可插拔的注解支持。包含Feign注解和Jax-Rs注解</li>
+<li>支持可拔插的Http编码器和解码器</li>
+<li>支持Hystrix和FallBack</li>
+<li>支持Ribbon的负载均衡</li>
+<li>支持Http请求的响应的压缩</li>
+</ul>
+</blockquote>
+<h1 id="Feign的工作原理"><a href="#Feign的工作原理" class="headerlink" title="Feign的工作原理"></a>Feign的工作原理</h1><blockquote>
+<ul>
+<li>在主程序增加 @EnableFeignClients 注解开启对FeignClient扫描加载处理。</li>
+<li>当程序启动的时候，会进行包扫描。扫描所有的@FeignClinet是的注解的类，并将信息注入Spring IOC容器中。当定期的Feign接口的方法调用的时候，通过JOK的dialing的方式，来生成具体RequestTemplate。当生成代理时候，Fegin会每个接口方法创建一个RequestTemplate对象，该对象封装了Http请求需要的全部信息。如请求参数名。请求方法等信息都是在这个过程中确定的。</li>
+<li>然后又RequestTemplate生成Request，然后把Request交个Client去处理，这里指的是Client可以是jDk原生的URLConnection，Apache的HttpClient，也可以是Okhttp，最后Client被封装到LoadBalanceClient类，这个类结合Ribbon负载均衡发起服务之间的调用</li>
+</ul>
+</blockquote>
+<h1 id="FeignClient注解"><a href="#FeignClient注解" class="headerlink" title="FeignClient注解"></a>FeignClient注解</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:right">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td style="text-align:right">指定FeignClient的名称，如果项目使用Ribbon，name属性会作为微服务的名称，用于服务发现</td>
+</tr>
+<tr>
+<td>url</td>
+<td style="text-align:right">url一般用于调试，可以手动指定@FeignClient的调用地址</td>
+</tr>
+<tr>
+<td>decode404</td>
+<td style="text-align:right">当发生404错误的时候，如果该字段为true，会调用decoder进行解码，否则抛出FeignException</td>
+</tr>
+<tr>
+<td>configuration</td>
+<td style="text-align:right">Feign配置类，可以自定义Feign的Encode，Decoder，LogLevel,Contract</td>
+</tr>
+<tr>
+<td>fallback</td>
+<td style="text-align:right">定义容错处理类，当调用远程接口实在或者超时的时候，会调用相应的接口进行逻辑，fallback指定的类必须实现@FeignClient标记的接口</td>
+</tr>
+<tr>
+<td>fallbackFactory</td>
+<td style="text-align:right">工厂类，用于生成fallback类实例，通关这个属性我们可以实现每一个接口通用的容错逻辑，减少重复的代码</td>
+</tr>
+<tr>
+<td>path</td>
+<td style="text-align:right">定义当前的FeignClient的统一前缀</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Fegin开启GZIP压缩"><a href="#Fegin开启GZIP压缩" class="headerlink" title="Fegin开启GZIP压缩"></a>Fegin开启GZIP压缩</h1><blockquote>
+<p>提高通信效率</p>
+</blockquote>
+<h2 id="GZIP压缩的含义"><a href="#GZIP压缩的含义" class="headerlink" title="GZIP压缩的含义"></a>GZIP压缩的含义</h2><p><a href="https://blog.csdn.net/baidu_35407267/article/details/77141871" target="_blank" rel="noopener">https://blog.csdn.net/baidu_35407267/article/details/77141871</a></p>
+<blockquote>
+<p>情况很简单：文件越小，下载更快，用户感受更好。<br><img src="/images/cloud/7-4.png" alt="7-4.png"></p>
+<ul>
+<li>浏览器：嘿，给我来一个index.html，如果要有，给我来一个压缩版的可以吗 </li>
+<li>服务器：容我找找……好，满足你，如果找到了给你压缩以下，gzip格式的哦 </li>
+<li>服务器：yep，找到了，正在压缩，马上传给你。 </li>
+<li>浏览器：太棒了，只有10kb，我来解压，并且渲染给用户。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>变化的部分在于浏览器和服务器，它成功的发送过去一个压缩文件。对于gzip压缩的要点有两点:</p>
+<ul>
+<li>浏览器发送一个请求头，告诉服务器接受压缩版本的文件（gzip和deflate是两种压缩算法）Accept-Encoding:gzip,deflate</li>
+<li>如果文件压缩了,服务器返回一个头信息:Content-Encoding:gzip</li>
+</ul>
+</blockquote>
+<h2 id="在配置文件增加配置"><a href="#在配置文件增加配置" class="headerlink" title="在配置文件增加配置"></a>在配置文件增加配置</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: <span class="number">8011</span></span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: feign-gzip</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feign:</span><br><span class="line">  compression:</span><br><span class="line">    request:</span><br><span class="line">      enabled: <span class="keyword">true</span></span><br><span class="line">      mime-types: text/xml,application/xml,application/json # 配置压缩支持的MIME TYPE</span><br><span class="line">      min-request-size: 2048  # 配置压缩数据大小的下限</span><br><span class="line">    response:</span><br><span class="line">      enabled: true # 配置响应GZIP压缩</span><br></pre></td></tr></table></figure>
+<h2 id="并没有体会到有什么作用。。。"><a href="#并没有体会到有什么作用。。。" class="headerlink" title="并没有体会到有什么作用。。。"></a>并没有体会到有什么作用。。。</h2><h1 id="属性文件配置Feign"><a href="#属性文件配置Feign" class="headerlink" title="属性文件配置Feign"></a>属性文件配置Feign</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">feign:</span><br><span class="line">  client:</span><br><span class="line">    config:</span><br><span class="line">      #需要配置的FeignName</span><br><span class="line">      feignName:</span><br><span class="line">        connectTimeout: 5000 # 连接超时时间</span><br><span class="line">        readTimeout: 5000 # 读超时时间设置</span><br><span class="line">        loggerLevel: full # 配置Feign的日志级别</span><br><span class="line">        erroerDecorder: com.example.SimpleErrorDecorder # Feign的错误解码器</span><br><span class="line">        retryer: com.example.SimpleRetryer #配置充实</span><br><span class="line">        requestInterceptors: #配置拦截器</span><br><span class="line">          -com.example.FooRequestInerceptor</span><br><span class="line">          -com.example.BarRequestInterceptor</span><br><span class="line">        decode404: flase</span><br><span class="line">        encoder: com.example.SimpleEncoder #Fegin的编码器</span><br><span class="line">        decoder: com.example.SimpleDecoder # Feign的解码器</span><br><span class="line">        contract: com.example.SimpleContract # Feign的contract配置</span><br></pre></td></tr></table></figure>
+<h1 id="Feign-开启日志"><a href="#Feign-开启日志" class="headerlink" title="Feign 开启日志"></a>Feign 开启日志</h1><blockquote>
+<p>Feign为每一个FeginClient都提供了一个feign.Logger实例，可以在配置中开启日志<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  level:</span><br><span class="line">    cn.springcloud.book.feign.service.HelloFeignService: debug</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>或者创建带有@Configuration注解的类，去配置日志Bean<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloFeignServiceConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Level的具体级别如下：</span></span><br><span class="line"><span class="comment">     * NONE：不记录任何信息</span></span><br><span class="line"><span class="comment">     * BASIC：仅记录请求方法</span></span><br><span class="line"><span class="comment">     * HEADERS：处理记录 BASIC级别的信息外，还会记录请求和响应的头信息</span></span><br><span class="line"><span class="comment">     * FULL：记录所有请求与响应的明细,包括头信息,请求体,元数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    Logger.<span class="function">Level <span class="title">feignLoggerLevel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.FULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="Feign初试"><a href="#Feign初试" class="headerlink" title="Feign初试"></a>Feign初试</h1><blockquote>
+<p>增加prom文件</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--springcloud openFeign的starter的依赖--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&gt;  增加Config文件</span><br><span class="line"></span><br><span class="line">``` java</span><br><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignclient.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> feign.Logger;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName HelloFeignServiceConfig</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 下午 4:56</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloFeignServiceConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Level的具体级别如下：</span></span><br><span class="line"><span class="comment">     * NONE：不记录任何信息</span></span><br><span class="line"><span class="comment">     * BASIC：仅记录请求方法</span></span><br><span class="line"><span class="comment">     * HEADERS：处理记录 BASIC级别的信息外，还会记录请求和响应的头信息</span></span><br><span class="line"><span class="comment">     * FULL：记录所有请求与响应的明细,包括头信息,请求体,元数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    Logger.<span class="function">Level <span class="title">feignLoggerLevel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.FULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>增加Service接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignclient.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudfeignclient.config.HelloFeignServiceConfig;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName HelloFeignService</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 下午 4:55</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"client"</span>, url = <span class="string">"https://api.github.com"</span>, configuration = HelloFeignServiceConfig.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloFeignService</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> queryStr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@FeignClient</span> 注解手动指定url=https://api.github.com 该调用地址会根据传入字符串搜索GitHub上相关的仓库信息</span></span><br><span class="line"><span class="comment">     * HelloFeignService 会根据指定的Url和<span class="doctag">@ResuqetsMapping</span>对应的方法，转换成最终的请求地址</span></span><br><span class="line"><span class="comment">     * eg：https://api.github.com/search/repositories?q=spring-cloud-dubbo</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/search/repositories"</span>, method = RequestMethod.GET)</span><br><span class="line">    ResponseEntity&lt;<span class="keyword">byte</span>[]&gt; searchRepo(<span class="meta">@RequestParam</span>(<span class="string">"q"</span>) String queryStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignclient.controller;</span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudfeignclient.service.HelloFeignService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName HelloFeignController</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 下午 4:56</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloFeignController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HelloFeignService helloFeignService;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 服务消费者对位提供的服务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/search/github"</span>)</span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;<span class="keyword">byte</span>[]&gt; searchGithubRepoByStr(<span class="meta">@RequestParam</span>(<span class="string">"str"</span>) String queryStr) &#123;</span><br><span class="line">        <span class="keyword">return</span> helloFeignService.searchRepo(queryStr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>启动类增加@EnableFeignClients注解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudFeignClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudFeignClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行成功<br><img src="/images/cloud/7-3.png" alt="7-3.png"></p>
+</blockquote>
+<h1 id="Fegin实战记录"><a href="#Fegin实战记录" class="headerlink" title="Fegin实战记录"></a>Fegin实战记录</h1><h2 id="默认Client的替换"><a href="#默认Client的替换" class="headerlink" title="默认Client的替换"></a>默认Client的替换</h2><blockquote>
+<p>Feign默认使用JDK原生的URLConnection发送Http请求，没有连接池，但是对每个地址会保持长连接。利用了HTTP的persistence connection（持久连接）。可以使用Apache的HttpClient通过设置连接池，超时时间等对服务之间进行调用调优。</p>
+</blockquote>
+<h3 id="HttpClient替换Client"><a href="#HttpClient替换Client" class="headerlink" title="HttpClient替换Client"></a>HttpClient替换Client</h3><blockquote>
+<p>在porm文件中间配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">           &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;!--springcloud openFeign的starter的依赖--&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;!--使用Apache HttpClient替换Feign原生httpclient--&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;httpclient&lt;/artifactId&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;com.netflix.feign&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;feign-httpclient&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;8.17.0&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">   &lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>在application文件中配置上Fgign启动的时候加载http Clien替换默认的Client<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server.port=<span class="number">8010</span></span><br><span class="line">spring.application.name=feign-httpclient</span><br><span class="line">feign.httpclient.enabled=<span class="keyword">true</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>运行成功<br><img src="/images/cloud/7-5.png" alt="7-5.png"></p>
+</blockquote>
+<h3 id="OkHttp替换Client"><a href="#OkHttp替换Client" class="headerlink" title="OkHttp替换Client"></a>OkHttp替换Client</h3><blockquote>
+<p>prom文件增加配置 （不知道为什么只引入feign-okhttp之后并不能用，后期引用了com.squareup.okhttp3的jar包？？？）</p>
+<ul>
+<li>支持SPDY,可以合并多个到同一主机的请求</li>
+<li>使用连接池技术减少请求的延迟（如果SPDY是可用的话）</li>
+<li>使用GZIP压缩减少传出的数据量</li>
+<li>缓存响应避免重复的网络请求<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!--springcloud openFeign的starter的依赖--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;io.github.openfeign&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;feign-okhttp&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.11.0&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>开始OkHttp 为Feign默认的Client<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port=<span class="number">8011</span></span><br><span class="line">spring.application.name=feign-okhttp</span><br><span class="line">feign.httpclient.enabled=<span class="keyword">true</span></span><br><span class="line">feign.okhttp.enabled=<span class="keyword">true</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>创建核心功能执行者 okHttpClient 如下只是常用配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignokhttpreplace.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> feign.Feign;</span><br><span class="line"><span class="keyword">import</span> okhttp3.ConnectionPool;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureBefore;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignAutoConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(Feign.class)</span><br><span class="line"><span class="meta">@AutoConfigureBefore</span>(FeignAutoConfiguration.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignOkHttpClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> okhttp3.<span class="function">OkHttpClient <span class="title">okHttpClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> okhttp3.OkHttpClient.Builder()</span><br><span class="line">                <span class="comment">//设置连接超时</span></span><br><span class="line">                .connectTimeout(<span class="number">60</span>, TimeUnit.SECONDS)</span><br><span class="line">                <span class="comment">//设置读超时</span></span><br><span class="line">                .readTimeout(<span class="number">60</span>, TimeUnit.SECONDS)</span><br><span class="line">                <span class="comment">//设置写超时</span></span><br><span class="line">                .writeTimeout(<span class="number">60</span>,TimeUnit.SECONDS)</span><br><span class="line">                <span class="comment">//是否自动重连</span></span><br><span class="line">                .retryOnConnectionFailure(<span class="keyword">true</span>)</span><br><span class="line">                .connectionPool(<span class="keyword">new</span> ConnectionPool())</span><br><span class="line">                <span class="comment">//构建OkHttpClient对象</span></span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>在接口引入配置问津<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"github-client"</span>, url = <span class="string">"https://api.github.com"</span>, configuration = FeignOkHttpClient.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloFeignService</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * content: &#123;"message":"Validation Failed","errors":[&#123;"resource":"Search","field":"q","code":"missing"&#125;],</span></span><br><span class="line"><span class="comment">     * "documentation_url":"https://developer.github.com/v3/search"&#125;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> queryStr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/search/repositories"</span>, method = RequestMethod.GET)</span><br><span class="line">    ResponseEntity&lt;<span class="keyword">byte</span>[]&gt; searchRepo(<span class="meta">@RequestParam</span>(<span class="string">"q"</span>) String queryStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Post和Get的多参数传递"><a href="#Post和Get的多参数传递" class="headerlink" title="Post和Get的多参数传递"></a>Post和Get的多参数传递</h2><blockquote>
+<p>Feign不支持get方法直接绑定POJO</p>
+<ul>
+<li>拆分POJO对象为一个一个的属性放在方法参数里</li>
+<li>把方法参数变成Map传递</li>
+<li>使用@RequestBody，但是违反了Restful规范<br>通过实现Feign的RequestInterceptor中的apply方法进行统一拦截转换处理Feign中的Get方法多参数传递的问题</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>工程名</th>
+<th style="text-align:right">端口</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring-cloud-many-feign-eureka-server</td>
+<td style="text-align:right">8761</td>
+<td style="text-align:right">注册中心</td>
+</tr>
+<tr>
+<td>spring-cloud-many-feign-consumer</td>
+<td style="text-align:right">8011</td>
+<td style="text-align:right">服务消费者</td>
+</tr>
+<tr>
+<td>spring-cloud-many-feign-provider</td>
+<td style="text-align:right">8012</td>
+<td style="text-align:right">服务提供者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="创建注册中心（略过。。。）"><a href="#创建注册中心（略过。。。）" class="headerlink" title="创建注册中心（略过。。。）"></a>创建注册中心（略过。。。）</h3><h3 id="配置消费者"><a href="#配置消费者" class="headerlink" title="配置消费者"></a>配置消费者</h3><p> 1.集成swagger2<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName Swagger2Config</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:28</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2Config</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()</span><br><span class="line">                .apis(RequestHandlerSelectors</span><br><span class="line">                        .basePackage(<span class="string">"com.lyl.springcloudmanyfeignconsumer.controller"</span>))</span><br><span class="line">                .paths(PathSelectors.any()).build();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder().title(<span class="string">"Feign多参数传递问题"</span>).description(<span class="string">"Feign多参数传递问题"</span>)</span><br><span class="line">                .contact(<span class="string">"Software_King@qq.com"</span>).version(<span class="string">"1.0"</span>).build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.config;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.EnableWebMvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName ApplicationExceptionAdapter</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:22</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationExceptionAdapter</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addResourceHandler(<span class="string">"swagger-ui.html"</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/META-INF/resources/"</span>);</span><br><span class="line">        registry.addResourceHandler(<span class="string">"/webjars/**"</span>)</span><br><span class="line">                .addResourceLocations(<span class="string">"classpath:/META-INF/resources/webjars/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>配置核心Interceptor<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.JsonNode;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> feign.RequestInterceptor;</span><br><span class="line"><span class="keyword">import</span> feign.RequestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName FeignRequestInterceptor</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:29</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignRequestInterceptor</span> <span class="keyword">implements</span> <span class="title">RequestInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String MEONTH = <span class="string">"GET"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ObjectMapper objectMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">(RequestTemplate requestTemplate)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// feign 不支持 GET 方法传 POJO, json body转query</span></span><br><span class="line">        <span class="keyword">if</span> (requestTemplate.method().equals(MEONTH) &amp;&amp; requestTemplate.body() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                JsonNode jsonNode = objectMapper.readTree(requestTemplate.body());</span><br><span class="line">                requestTemplate.body(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">                Map&lt;String, Collection&lt;String&gt;&gt; queries = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">                buildQuery(jsonNode, <span class="string">""</span>, queries);</span><br><span class="line">                requestTemplate.queries(queries);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="comment">//提示:根据实践项目情况处理此处异常，这里不做扩展。</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildQuery</span><span class="params">(JsonNode jsonNode, String path, Map&lt;String, Collection&lt;String&gt;&gt; queries)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//子节点</span></span><br><span class="line">        <span class="keyword">if</span> (!jsonNode.isContainerNode()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (jsonNode.isNull()) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Collection&lt;String&gt; values = queries.get(path);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> == values) &#123;</span><br><span class="line">                values = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">                queries.put(path, values);</span><br><span class="line">            &#125;</span><br><span class="line">            values.add(jsonNode.asText());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 数组节点</span></span><br><span class="line">        <span class="keyword">if</span> (jsonNode.isArray()) &#123;</span><br><span class="line">            Iterator&lt;JsonNode&gt; it = jsonNode.elements();</span><br><span class="line">            <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">                buildQuery(it.next(), path, queries);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Iterator&lt;Map.Entry&lt;String, JsonNode&gt;&gt; it = jsonNode.fields();</span><br><span class="line">            <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">                Map.Entry&lt;String, JsonNode&gt; entry = it.next();</span><br><span class="line">                <span class="keyword">if</span> (StringUtils.hasText(path)) &#123;</span><br><span class="line">                    buildQuery(entry.getValue(), path + <span class="string">"."</span> + entry.getKey(), queries);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  <span class="comment">// 根节点</span></span><br><span class="line">                    buildQuery(entry.getValue(), entry.getKey(), queries);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> feign.RequestInterceptor;</span><br><span class="line"><span class="keyword">import</span> feign.RequestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.Enumeration;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName FeignTokenInterceptor</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:29</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> * Feign统一的Token拦截器</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignTokenInterceptor</span> <span class="keyword">implements</span> <span class="title">RequestInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">(RequestTemplate requestTemplate)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span>==getHttpServletRequest())&#123;</span><br><span class="line">            <span class="comment">//此处省略日志记录</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将获取Token对应的值往下面传</span></span><br><span class="line">        requestTemplate.header(<span class="string">"oauthToken"</span>, getHeaders(getHttpServletRequest()).get(<span class="string">"oauthToken"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> HttpServletRequest <span class="title">getHttpServletRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Map&lt;String, String&gt; <span class="title">getHeaders</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">        Enumeration&lt;String&gt; enumeration = request.getHeaderNames();</span><br><span class="line">        <span class="keyword">while</span> (enumeration.hasMoreElements()) &#123;</span><br><span class="line">            String keys = enumeration.nextElement();</span><br><span class="line">            String value = request.getHeader(keys);</span><br><span class="line">            map.put(keys, value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.创建service接口 注意：@FeignClient(name = “provider”) 名字写上服务提供者在注册中心注册的名字<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudmanyfeignconsumer.model.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName UserFeignService</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:41</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"provider"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/add"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function">String <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/update"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function">String <span class="title">updateUser</span><span class="params">(@RequestBody User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>配置启动类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignprovider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudManyFeignProviderApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudManyFeignProviderApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>4 创建Controller接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudmanyfeignconsumer.model.User;</span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudmanyfeignconsumer.service.UserFeignService;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.Api;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiOperation;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName UserController</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:44</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserFeignService userFeignService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于演示Feign的Get请求多参数传递</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/add"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addUser</span><span class="params">( @RequestBody @ApiParam(name=<span class="string">"用户"</span>,value=<span class="string">"传入json格式"</span>,required=<span class="keyword">true</span>)</span> User user)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userFeignService.addUser(user);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于演示Feign的Post请求多参数传递</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/update"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">( @RequestBody @ApiParam(name=<span class="string">"用户"</span>,value=<span class="string">"传入json格式"</span>,required=<span class="keyword">true</span>)</span> User user)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userFeignService.updateUser(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="配置服务提供者"><a href="#配置服务提供者" class="headerlink" title="配置服务提供者"></a>配置服务提供者</h3><blockquote>
+<p>增加接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignprovider.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudmanyfeignprovider.model.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName UserController</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:54</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/add"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addUser</span><span class="params">(User user, HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String token = request.getHeader(<span class="string">"oauthToken"</span>);</span><br><span class="line">        <span class="keyword">return</span> token + <span class="string">"hello,已经添加成功"</span> + user.getName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/update"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">(@RequestBody User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello,已经修改成功"</span> + user.getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>配置启动类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignprovider;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudManyFeignProviderApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudManyFeignProviderApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="先启动注册中心-再启动服务提供者-在启动服务消费者"><a href="#先启动注册中心-再启动服务提供者-在启动服务消费者" class="headerlink" title="先启动注册中心 再启动服务提供者  在启动服务消费者"></a>先启动注册中心 再启动服务提供者  在启动服务消费者</h3><blockquote>
+<p>测试发现 提供者并没有获取到token<br><img src="/images/cloud/7-6.png" alt="7-6.png"></p>
+</blockquote>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><table>
+<thead>
+<tr>
+<th>工程名</th>
+<th style="text-align:right">端口</th>
+<th style="text-align:right">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring-cloud-feign-upload-consumer</td>
+<td style="text-align:right">8761</td>
+<td style="text-align:right">服务消费者</td>
+</tr>
+<tr>
+<td>spring-cloud-feign-upload-file-server</td>
+<td style="text-align:right">8011</td>
+<td style="text-align:right">文件服务提供者</td>
+</tr>
+<tr>
+<td>spring-cloud-feign-upload-provider</td>
+<td style="text-align:right">8012</td>
+<td style="text-align:right">服务提供者</td>
+</tr>
+<tr>
+<td>spring-cloud-feign-upload-server</td>
+<td style="text-align:right">8761</td>
+<td style="text-align:right">注册中心</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>创建FileUploadFeignService<br>com.lyl.springcloudfeignuploadconsumer.service.FileUploadFeignService<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignuploadconsumer.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lyl.springcloudfeignuploadconsumer.config.FeignMultipartSupportConfig;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestPart;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName FileUploadFeignService</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 11:27</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"file-server"</span>, configuration = FeignMultipartSupportConfig.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FileUploadFeignService</span> </span>&#123;</span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     * 1.produces,consumes必填</span></span><br><span class="line"><span class="comment">     * 2.注意区分<span class="doctag">@RequestPart</span>和RequestParam，不要将</span></span><br><span class="line"><span class="comment">     * @ RequestPart(value = "file") 写成<span class="doctag">@RequestParam</span>(value = "file")</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> file</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.POST, value = <span class="string">"/uploadFile/server"</span>,</span><br><span class="line">            produces = &#123;MediaType.APPLICATION_JSON_UTF8_VALUE&#125;,</span><br><span class="line">            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)</span><br><span class="line">    <span class="function">String <span class="title">fileUpload</span><span class="params">(@RequestPart(value = <span class="string">"file"</span>)</span> MultipartFile file)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>编写文件上传的服务端<br>com.lyl.springcloudfeignuploadfileserver.controller.FeignUploadController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignuploadfileserver.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PostMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName FeignUploadController</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 11:26</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignUploadController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PostMapping</span>(value = <span class="string">"/uploadFile/server"</span>, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">fileUploadServer</span><span class="params">(MultipartFile file)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> file.getOriginalFilename();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>查看接口运行结果</p>
+</blockquote>
+<p><img src="/images/cloud/7-7.png" alt="7-7.png"></p>
+<h2 id="返回图片流处理方式"><a href="#返回图片流处理方式" class="headerlink" title="返回图片流处理方式"></a>返回图片流处理方式</h2><blockquote>
+<p>在使用Feign的过程中可以将流转为字节数据传递，但是因为controller层返回的不能直接返回byte，隐藏需要将返回值修改为resonse<br>com.lyl.springcloudfeignuploadconsumer.service.UserFeignService<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudfeignuploadconsumer.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.openfeign.FeignClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.ws.Response;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName UserFeignService</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 11:08</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"provider"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/feign"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function">String <span class="title">helloFeign</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成图片验证码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> imagekey</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"createImagesCode"</span>)</span><br><span class="line">    <span class="function">Response <span class="title">createImageCode</span><span class="params">(@RequestParam(<span class="string">"imagekey"</span>)</span> String imagekey)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="调用传递Token-并未实现"><a href="#调用传递Token-并未实现" class="headerlink" title="调用传递Token(并未实现)"></a>调用传递<code>Token</code>(并未实现)</h2><blockquote>
+<p>com.lyl.springcloudmanyfeignconsumer.interceptor.FeignTokenInterceptor<br>当消费者去调用服务提供者的时候token不应该被提供者获取到吗？？？ token并获取不到<br>原因：oauthtoken必须小写才可以<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudmanyfeignconsumer.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> feign.RequestInterceptor;</span><br><span class="line"><span class="keyword">import</span> feign.RequestTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.Enumeration;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName FeignTokenInterceptor</span></span><br><span class="line"><span class="comment"> * Author liyunlong</span></span><br><span class="line"><span class="comment"> * Data 上午 9:29</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> * Feign统一的Token拦截器</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignTokenInterceptor</span> <span class="keyword">implements</span> <span class="title">RequestInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">(RequestTemplate requestTemplate)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == getHttpServletRequest()) &#123;</span><br><span class="line">            <span class="comment">//此处省略日志记录</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将获取Token对应的值往下面传</span></span><br><span class="line">        requestTemplate.header(<span class="string">"oauthtoken"</span>, getHeaders(getHttpServletRequest()).get(<span class="string">"oauthtoken"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> HttpServletRequest <span class="title">getHttpServletRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Map&lt;String, String&gt; <span class="title">getHeaders</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">        Enumeration&lt;String&gt; enumeration = request.getHeaderNames();</span><br><span class="line">        <span class="keyword">while</span> (enumeration.hasMoreElements()) &#123;</span><br><span class="line">            String keys = enumeration.nextElement();</span><br><span class="line">            String value = request.getHeader(keys);</span><br><span class="line">            map.put(keys, value);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>服务提供者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> String TOKEN = <span class="string">"oauthtoken"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/add"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addUser</span><span class="params">(User user, HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String token = request.getHeader(TOKEN);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"token:"</span> + token + <span class="string">"添加的用户名称："</span> + user.getName();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="/images/cloud/7-8.png" alt="7-8.png"></p>
+
+      
+    </div>
+    
+    
+    
+    
+          <div>
+            
+                 <div>
+  
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+           
+         </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/springcloud/" rel="tag"><i class="fa fa-tag"></i>-springcloud</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/cloud7/" rel="next" title="7.Ribbon">
+                <i class="fa fa-chevron-left"></i> 7.Ribbon
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">李云龙</p>
+              <p class="site-description motion-element" itemprop="description">李云龙的个人小站，主要是个人学习资料的记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liyunlog0621" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liyunlongvi@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/10814259/liyunlong" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-globe"></i>StackOverflow</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.laiyy.top/" title="基友小站" target="_blank">基友小站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign的含义"><span class="nav-number">1.</span> <span class="nav-text">Feign的含义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign的特性"><span class="nav-number">2.</span> <span class="nav-text">Feign的特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign的工作原理"><span class="nav-number">3.</span> <span class="nav-text">Feign的工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FeignClient注解"><span class="nav-number">4.</span> <span class="nav-text">FeignClient注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fegin开启GZIP压缩"><span class="nav-number">5.</span> <span class="nav-text">Fegin开启GZIP压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GZIP压缩的含义"><span class="nav-number">5.1.</span> <span class="nav-text">GZIP压缩的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在配置文件增加配置"><span class="nav-number">5.2.</span> <span class="nav-text">在配置文件增加配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并没有体会到有什么作用。。。"><span class="nav-number">5.3.</span> <span class="nav-text">并没有体会到有什么作用。。。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性文件配置Feign"><span class="nav-number">6.</span> <span class="nav-text">属性文件配置Feign</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign-开启日志"><span class="nav-number">7.</span> <span class="nav-text">Feign 开启日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign初试"><span class="nav-number">8.</span> <span class="nav-text">Feign初试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fegin实战记录"><span class="nav-number">9.</span> <span class="nav-text">Fegin实战记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认Client的替换"><span class="nav-number">9.1.</span> <span class="nav-text">默认Client的替换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpClient替换Client"><span class="nav-number">9.1.1.</span> <span class="nav-text">HttpClient替换Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OkHttp替换Client"><span class="nav-number">9.1.2.</span> <span class="nav-text">OkHttp替换Client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Post和Get的多参数传递"><span class="nav-number">9.2.</span> <span class="nav-text">Post和Get的多参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建注册中心（略过。。。）"><span class="nav-number">9.2.1.</span> <span class="nav-text">创建注册中心（略过。。。）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置消费者"><span class="nav-number">9.2.2.</span> <span class="nav-text">配置消费者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置服务提供者"><span class="nav-number">9.2.3.</span> <span class="nav-text">配置服务提供者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#先启动注册中心-再启动服务提供者-在启动服务消费者"><span class="nav-number">9.2.4.</span> <span class="nav-text">先启动注册中心 再启动服务提供者  在启动服务消费者</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-number">9.3.</span> <span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回图片流处理方式"><span class="nav-number">9.4.</span> <span class="nav-text">返回图片流处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用传递Token-并未实现"><span class="nav-number">9.5.</span> <span class="nav-text">调用传递Token(并未实现)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李云龙</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">8.3k</span>
+  
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+   本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

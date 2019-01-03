@@ -127,7 +127,7 @@
 
 
 
-  <meta name="keywords" content="Spring Integration,">
+  <meta name="keywords" content="好好学习 天天向上">
 
 
 
@@ -140,18 +140,22 @@
 
 
 
-<meta name="description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
-<meta name="keywords" content="Spring Integration">
+<meta name="description" content="微服务核心：核心在于服务治理-注册中心搭建erueka集群环境，至少需要2台以上。eureka搭建集群原理是使用相互注册原理，形成一组相互祖册的注册中心。从而实现数据相互的同步。从而可以达到高可用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="消息系统">
-<meta property="og:url" content="https://liyunlog0621.github.io/2018/12/28/Integration/index.html">
+<meta property="og:title" content="6.Eureka2.0集群搭建以及服务调用">
+<meta property="og:url" content="https://liyunlog0621.github.io/2018/12/29/cloud6/index.html">
 <meta property="og:site_name" content="Advanced">
-<meta property="og:description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
+<meta property="og:description" content="微服务核心：核心在于服务治理-注册中心搭建erueka集群环境，至少需要2台以上。eureka搭建集群原理是使用相互注册原理，形成一组相互祖册的注册中心。从而实现数据相互的同步。从而可以达到高可用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T12:47:09.288Z">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/6-1.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/6-2.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/6-3.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/6-4.png">
+<meta property="og:updated_time" content="2019-01-02T14:26:59.401Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="消息系统">
-<meta name="twitter:description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
+<meta name="twitter:title" content="6.Eureka2.0集群搭建以及服务调用">
+<meta name="twitter:description" content="微服务核心：核心在于服务治理-注册中心搭建erueka集群环境，至少需要2台以上。eureka搭建集群原理是使用相互注册原理，形成一组相互祖册的注册中心。从而实现数据相互的同步。从而可以达到高可用">
+<meta name="twitter:image" content="https://liyunlog0621.github.io/images/cloud/6-1.png">
 
 
 
@@ -181,13 +185,13 @@
 
 
 
-  <link rel="canonical" href="https://liyunlog0621.github.io/2018/12/28/Integration/">
+  <link rel="canonical" href="https://liyunlog0621.github.io/2018/12/29/cloud6/">
 
 
 
 
 
-  <title>消息系统 | Advanced</title>
+  <title>6.Eureka2.0集群搭建以及服务调用 | Advanced</title>
   
 
 
@@ -313,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/Integration/">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李云龙">
@@ -330,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">消息系统</h1>
+          <h1 class="post-title" itemprop="name headline">6.Eureka2.0集群搭建以及服务调用</h1>
         
 
         <div class="post-meta">
@@ -342,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T16:52:46+08:00">
-                2018-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:24:47+08:00">
+                2018-12-29
               </time>
             
 
@@ -374,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  25
+                  901
                 </span>
               
 
@@ -390,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -411,10 +415,46 @@
       
 
       
-        <h1 id="Spring-Integeration-事件驱动架构"><a href="#Spring-Integeration-事件驱动架构" class="headerlink" title="Spring Integeration 事件驱动架构"></a>Spring Integeration 事件驱动架构</h1><blockquote>
+        <blockquote>
+<p>微服务核心：核心在于服务治理-注册中心<br>搭建erueka集群环境，至少需要2台以上。eureka搭建集群原理是使用相互注册原理，形成一组相互祖册的注册中心。<br>从而实现数据相互的同步。从而可以达到高可用</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="第二台注册地址"><a href="#第二台注册地址" class="headerlink" title="第二台注册地址"></a>第二台注册地址</h2><blockquote>
+<p>注意1： spring.applicataion.name 需要保持注册中心一直<br>注意2：eureka.client.service-url.defaultZone= 需要将端口需要另外注册中心端口上，追加的话继续向后面拼接即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: <span class="number">8100</span></span><br><span class="line">###定义服务名称</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eureka</span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: <span class="number">127.0</span>.0.1</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:9100/eureka/</span></span><br><span class="line">    ### 因为自己是注册中心，是否需要将自己注册给自己的注册中心（集群的时候是需要为true）</span><br><span class="line">    register-with-eureka: <span class="keyword">true</span></span><br><span class="line">    ### 因为自己是注册中心，不需要检索服务信息</span><br><span class="line">    fetch-registry: <span class="keyword">true</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="第二台注册地址-1"><a href="#第二台注册地址-1" class="headerlink" title="第二台注册地址"></a>第二台注册地址</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server.port=<span class="number">9100</span></span><br><span class="line">spring.application.name=eureka</span><br><span class="line">eureka.instance.hostname=<span class="number">127.0</span>.0.1</span><br><span class="line">eureka.client.service-url.defaultZone=http:<span class="comment">//localhost:8100/eureka/</span></span><br><span class="line">eureka.client.register-with-eureka=<span class="keyword">true</span></span><br><span class="line">eureka.client.fetch-registry=<span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行可查看注册中心已经注册<br><img src="/images/cloud/6-1.png" alt="6-1.png"><br><img src="/images/cloud/6-2.png" alt="6-2.png"></p>
+</blockquote>
+<h1 id="客户端接口注入到注册中心"><a href="#客户端接口注入到注册中心" class="headerlink" title="客户端接口注入到注册中心"></a>客户端接口注入到注册中心</h1><p>在eureka上写入注册到多个注册中心即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###会员项目的端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8000</span></span><br><span class="line">### 服务的别名-服务注册到注册中心的名称</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: member</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      ### 当前会员服务注册到Eureka服务</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka,http://localhost:9100/eureka/</span></span><br><span class="line">      ### 需要将我的服务注册到Eureka 上</span><br><span class="line">    register-with-eureka: <span class="keyword">true</span></span><br><span class="line">    ###需要检索服务</span><br><span class="line">    fetch-registry: <span class="keyword">true</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###订单项目的端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8010</span></span><br><span class="line">### 服务的别名-服务注册到注册中心的名称</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: order</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      ### 当前订单服务注册到Eureka服务</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka , http://localhost:9100/eureka/</span></span><br><span class="line">      ### 需要将我的服务注册到Eureka 上</span><br><span class="line">    register-with-eureka: <span class="keyword">true</span></span><br><span class="line">    ###需要检索服务</span><br><span class="line">    fetch-registry: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行可查看服务已经注册<br><img src="/images/cloud/6-3.png" alt="6-3.png"><br><img src="/images/cloud/6-4.png" alt="6-4.png"></p>
+</blockquote>
+<blockquote>
+<p>只会保证一台注册中心有对应服务信息，当一台注册中心挂掉之后，另外一台就会出现</p>
+</blockquote>
+<h1 id="eureak-自我保护机制"><a href="#eureak-自我保护机制" class="headerlink" title="eureak 自我保护机制"></a>eureak 自我保护机制</h1><blockquote>
 <ul>
-<li>事件通知：通过发送事件消息来通知其他</li>
+<li>EurekaClient(注册客户端)</li>
+<li>EurekaServer (注册中心服务端) </li>
 </ul>
+</blockquote>
+<p>为什么会产生Eureka自我保护机制</p>
+<blockquote>
+<p>自我保护机制：默认情况下EurekaClient定时想EurekaServer端发送心跳包，如果EurekaServer端在一定的时间内没有收到心跳包，便会直接剔除该服务。(默认90秒时间)，但是在短时间内丢失了大量的服务实例心跳，这时候EurekaServer会开启自我保护机制，不会剔除该服务（为了防止EurekaClient是可以访问的，只是暂时无法以Eureka网络访问不通）。防止误删。<br>为了防止eurekaClient可以正常运行，但是与EurekaServer网络不通的情况下，<br>EurekaServer不会将EurekaClient服务剔除</p>
+</blockquote>
+<h1 id="开启-关闭-自我保护机制"><a href="#开启-关闭-自我保护机制" class="headerlink" title="开启/关闭 自我保护机制"></a>开启/关闭 自我保护机制</h1><blockquote>
+<ul>
+<li>本地环境：禁止开启自我保护机制</li>
+<li>生产环境：开始自我保护机制</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>在server服务中增加如下配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#测试时候关闭自我保护机制，保证不可用服务及时剔除</span><br><span class="line">eureka.server.enable-self-preservation=<span class="keyword">true</span></span><br><span class="line">eureka.server.eviction-interval-timer-in-ms=<span class="number">2000</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>在client配置心跳检测时间<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#心跳检测与续约时间</span><br><span class="line">instance:</span><br><span class="line">  #Eureka客户端呢想服务器发送心跳的时间间隔，单位为秒(客户端告诉服务端自己按照该规则)</span><br><span class="line">  lease-renewal-interval-in-seconds: <span class="number">1</span></span><br><span class="line">  #Eureka 服务端在收到最后一次心跳之后等待的时间上线，单位为1秒，超过则剔除（客户端告诉服务端按照此规则）</span><br><span class="line">  lease-expiration-duration-in-seconds: <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
       
@@ -438,12 +478,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Spring-Integration/" rel="tag"><i class="fa fa-tag"></i>Spring Integration</a>
-          
-        </div>
-      
 
       
       
@@ -453,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/28/javalearn1/" rel="next" title="java8初识">
-                <i class="fa fa-chevron-left"></i> java8初识
+              <a href="/2018/12/29/cloud5/" rel="next" title="5.@LoadBalanced实现本地负载均衡">
+                <i class="fa fa-chevron-left"></i> 5.@LoadBalanced实现本地负载均衡
               </a>
             
           </div>
@@ -463,8 +497,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/28/cloud2/" rel="prev" title="2.Eureka 创建注册中心">
-                2.Eureka 创建注册中心 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/02/cloud7/" rel="prev" title="7.Ribbon">
+                7.Ribbon <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -664,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Integeration-事件驱动架构"><span class="nav-number">1.</span> <span class="nav-text">Spring Integeration 事件驱动架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二台注册地址"><span class="nav-number">1.</span> <span class="nav-text">第二台注册地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二台注册地址-1"><span class="nav-number">2.</span> <span class="nav-text">第二台注册地址</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端接口注入到注册中心"><span class="nav-number"></span> <span class="nav-text">客户端接口注入到注册中心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eureak-自我保护机制"><span class="nav-number"></span> <span class="nav-text">eureak 自我保护机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开启-关闭-自我保护机制"><span class="nav-number"></span> <span class="nav-text">开启/关闭 自我保护机制</span></a></li></div>
             
 
           </div>

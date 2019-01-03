@@ -127,7 +127,7 @@
 
 
 
-  <meta name="keywords" content="Spring Integration,">
+  <meta name="keywords" content="SpringCloud,">
 
 
 
@@ -140,18 +140,21 @@
 
 
 
-<meta name="description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
-<meta name="keywords" content="Spring Integration">
+<meta name="description" content="案例说明案例：实现会员服务(提供者) member 调用订单服务（消费者） order Eureka服务提供者">
+<meta name="keywords" content="SpringCloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="消息系统">
-<meta property="og:url" content="https://liyunlog0621.github.io/2018/12/28/Integration/index.html">
+<meta property="og:title" content="3.搭建Eureka服务提供者">
+<meta property="og:url" content="https://liyunlog0621.github.io/2018/12/29/cloud3/index.html">
 <meta property="og:site_name" content="Advanced">
-<meta property="og:description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
+<meta property="og:description" content="案例说明案例：实现会员服务(提供者) member 调用订单服务（消费者） order Eureka服务提供者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T12:47:09.288Z">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/cloud2-2.png">
+<meta property="og:image" content="https://liyunlog0621.github.io/images/cloud/cloud2-3.png">
+<meta property="og:updated_time" content="2018-12-29T08:24:24.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="消息系统">
-<meta name="twitter:description" content="Spring Integeration 事件驱动架构  事件通知：通过发送事件消息来通知其他">
+<meta name="twitter:title" content="3.搭建Eureka服务提供者">
+<meta name="twitter:description" content="案例说明案例：实现会员服务(提供者) member 调用订单服务（消费者） order Eureka服务提供者">
+<meta name="twitter:image" content="https://liyunlog0621.github.io/images/cloud/cloud2-2.png">
 
 
 
@@ -181,13 +184,13 @@
 
 
 
-  <link rel="canonical" href="https://liyunlog0621.github.io/2018/12/28/Integration/">
+  <link rel="canonical" href="https://liyunlog0621.github.io/2018/12/29/cloud3/">
 
 
 
 
 
-  <title>消息系统 | Advanced</title>
+  <title>3.搭建Eureka服务提供者 | Advanced</title>
   
 
 
@@ -313,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/28/Integration/">
+    <link itemprop="mainEntityOfPage" href="https://liyunlog0621.github.io/2018/12/29/cloud3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李云龙">
@@ -330,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">消息系统</h1>
+          <h1 class="post-title" itemprop="name headline">3.搭建Eureka服务提供者</h1>
         
 
         <div class="post-meta">
@@ -342,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T16:52:46+08:00">
-                2018-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T15:06:59+08:00">
+                2018-12-29
               </time>
             
 
@@ -352,6 +355,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -374,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  25
+                  356
                 </span>
               
 
@@ -411,11 +436,15 @@
       
 
       
-        <h1 id="Spring-Integeration-事件驱动架构"><a href="#Spring-Integeration-事件驱动架构" class="headerlink" title="Spring Integeration 事件驱动架构"></a>Spring Integeration 事件驱动架构</h1><blockquote>
-<ul>
-<li>事件通知：通过发送事件消息来通知其他</li>
-</ul>
-</blockquote>
+        <h1 id="案例说明"><a href="#案例说明" class="headerlink" title="案例说明"></a>案例说明</h1><p>案例：实现会员服务(提供者) member 调用订单服务（消费者） order</p>
+<p>Eureka服务提供者</p>
+<a id="more"></a>
+<h1 id="提供者"><a href="#提供者" class="headerlink" title="提供者"></a>提供者</h1><h2 id="第一步-配置prom文件"><a href="#第一步-配置prom文件" class="headerlink" title="第一步.配置prom文件"></a>第一步.配置prom文件</h2>  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引入wab依赖--&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">         &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">         &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">     &lt;/dependency&gt;</span><br><span class="line">     &lt;!--引入eureka客户端依赖--&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">         &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">         &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">     &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="第二步：配置application-yml"><a href="#第二步：配置application-yml" class="headerlink" title="第二步：配置application.yml"></a>第二步：配置application.yml</h2>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">###会员项目的端口号</span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8000</span></span><br><span class="line">### 服务的别名-服务注册到注册中心的名称</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: member</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      ### 当前会员服务注册到Eureka服务</span><br><span class="line">      defaultZone: http:<span class="comment">//localhost:8100/eureka</span></span><br><span class="line">      ### 需要将我的服务注册到Eureka 上</span><br><span class="line">    register-with-eureka: <span class="keyword">true</span></span><br><span class="line">    ###需要检索服务</span><br><span class="line">    fetch-registry: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="第三步：增加服务接口"><a href="#第三步：增加服务接口" class="headerlink" title="第三步：增加服务接口"></a>第三步：增加服务接口</h2>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lyl.springcloudeurekanember.com.lyl.api.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ClassName MemberApiController</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> liyunlong</span></span><br><span class="line"><span class="comment"> * Data 下午 2:11</span></span><br><span class="line"><span class="comment"> * Version 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberApiController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/getMember"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">geMember</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"this is member 我是会员服务！！！"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第四步：服务启动项配置"><a href="#第四步：服务启动项配置" class="headerlink" title="第四步：服务启动项配置"></a>第四步：服务启动项配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.lyl.springcloudeurekanember;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.eureka.EnableEurekaClient;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaClient</span><br><span class="line">public class SpringCloudEurekaNemberApplication &#123;</span><br><span class="line">    /**</span><br><span class="line">     * @EnableEurekaClient 将当前服务注册到eureka上</span><br><span class="line">     * @param args</span><br><span class="line">     */</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaNemberApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第五步：启动"><a href="#第五步：启动" class="headerlink" title="第五步：启动"></a>第五步：启动</h2><p><img src="/images/cloud/cloud2-2.png" alt="cloud2-2.png"></p>
+<h2 id="第六步：调用服务接口"><a href="#第六步：调用服务接口" class="headerlink" title="第六步：调用服务接口"></a>第六步：调用服务接口</h2><p><a href="http://yh-20161128lobl:8000/getMember" target="_blank" rel="noopener">http://yh-20161128lobl:8000/getMember</a><br><img src="/images/cloud/cloud2-3.png" alt="cloud2-3.png"></p>
 
       
     </div>
@@ -440,7 +469,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Integration/" rel="tag"><i class="fa fa-tag"></i>Spring Integration</a>
+            <a href="/tags/SpringCloud/" rel="tag"><i class="fa fa-tag"></i>SpringCloud</a>
           
         </div>
       
@@ -453,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/28/javalearn1/" rel="next" title="java8初识">
-                <i class="fa fa-chevron-left"></i> java8初识
+              <a href="/2018/12/28/cloud1/" rel="next" title="1.Spring Cloud 基本概念理解">
+                <i class="fa fa-chevron-left"></i> 1.Spring Cloud 基本概念理解
               </a>
             
           </div>
@@ -463,8 +492,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/28/cloud2/" rel="prev" title="2.Eureka 创建注册中心">
-                2.Eureka 创建注册中心 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/29/cloud4/" rel="prev" title="4.搭建Eureka服务消费者">
+                4.搭建Eureka服务消费者 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -664,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Integeration-事件驱动架构"><span class="nav-number">1.</span> <span class="nav-text">Spring Integeration 事件驱动架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#案例说明"><span class="nav-number">1.</span> <span class="nav-text">案例说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提供者"><span class="nav-number">2.</span> <span class="nav-text">提供者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步-配置prom文件"><span class="nav-number">2.1.</span> <span class="nav-text">第一步.配置prom文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：配置application-yml"><span class="nav-number">2.2.</span> <span class="nav-text">第二步：配置application.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：增加服务接口"><span class="nav-number">2.3.</span> <span class="nav-text">第三步：增加服务接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：服务启动项配置"><span class="nav-number">2.4.</span> <span class="nav-text">第四步：服务启动项配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步：启动"><span class="nav-number">2.5.</span> <span class="nav-text">第五步：启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步：调用服务接口"><span class="nav-number">2.6.</span> <span class="nav-text">第六步：调用服务接口</span></a></li></ol></li></ol></div>
             
 
           </div>
